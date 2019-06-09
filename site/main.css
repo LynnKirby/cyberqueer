@@ -273,11 +273,16 @@ pre {
  * Form
  */
 
-form {
-  width: fit-content;
-  text-align: center;
-  /* Center and add an additional line above-below. */
+.form-wrap {
+  display: flex;
   margin: 2em auto;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 
 label {
@@ -315,6 +320,10 @@ input[type="url"]:hover,
 input[type="url"]:focus {
   color: var(--input-color-active);
   border: 1px solid var(--input-border-color-active);
+}
+
+button {
+  align-self: center;
 }
 
 /*

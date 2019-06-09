@@ -87,31 +87,33 @@ color as the subtitle but still wrap with the header and not get separated. #}
     can also use this form to sign up. The webring admin will look at your site
     and handle your request.
   </p>
-  <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot">
-    <label>
-      Site Name:
-      <input type="text" name="name" required />
-    </label>
-
-    <label>
-      Site URL:
-      <input type="url" name="url" required />
-    </label>
-
-    <label>
-      RSS Feed URL (optional):
-      <input type="url" name="feed" />
-    </label>
-
-    <div style="visibility:hidden;display:none" aria-hidden="true">
+  <div class="form-wrap">
+    <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot">
       <label>
-        Don’t fill this out if you're human:
-        <input type="text" name="bot" />
+        Site Name:
+        <input type="text" name="name" required />
       </label>
-    </div>
 
-    <button type="submit">Give Me Validation</button>
-  </form>
+      <label>
+        Site URL:
+        <input type="url" name="url" required />
+      </label>
+
+      <label>
+        RSS Feed URL (optional):
+        <input type="url" name="feed" />
+      </label>
+
+      <div style="visibility:hidden;display:none" aria-hidden="true">
+        <label>
+          Don’t fill this out if you're human:
+          <input type="text" name="bot" />
+        </label>
+      </div>
+
+      <button type="submit">Give Me Validation</button>
+    </form>
+  </div>
   <p>
     Once you've joined the ring, copy this code snippet into your site:
   </p>
