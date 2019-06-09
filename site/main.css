@@ -134,7 +134,7 @@ html {
 }
 
 .site .container {
-  max-width: 90ch;
+  max-width: 84ch;
   margin: 0 auto;
 }
 
@@ -144,12 +144,15 @@ html {
  */
 
 header,
+footer,
 pre,
 p,
-ol,
+ul,
 pre,
 .section-head,
-label {
+label,
+form,
+blockquote {
   display: block;
   margin-bottom: 1em;
 }
@@ -163,21 +166,26 @@ section {
 }
 
 /*
- * Headers: bright color and underlines for h1. Note we only use two levels of
- * header. Really just the page title and section names. Also display main title
- * and subtitle on one line.
+ * General lists
+ */
+
+ul {
+  list-style-type: none;
+  margin-left: 2ch;
+}
+
+ul li::before {
+  content: "♦ ";
+}
+
+/*
+ * Headers: bright color and underlines for h1, h2. Note we only use two levels
+ * of header. Really just the page title and section names. Also display main
+ * title and subtitle on one line.
  */
 
 h1, h2 {
   color: var(--header-color);
-}
-
-h1 {
-  text-decoration: underline;
-}
-
-header {
-  text-align: center;
 }
 
 h1 {
@@ -201,6 +209,17 @@ h1, .title-item {
 }
 
 /*
+ * Footer
+ */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--header-color);
+  padding-top: 0.5em;
+}
+
+/*
  * Member list
  */
 
@@ -212,6 +231,16 @@ h1, .title-item {
 
 .members-list {
   list-style: none;
+  /* Override regular list style indent */
+  margin-left: 0;
+}
+
+.members-list li {
+  color: var(--link-color);
+}
+
+.members-list li::before {
+  content: "» ";
 }
 
 /*
@@ -245,8 +274,9 @@ pre {
 
 form {
   width: fit-content;
-  margin: auto;
   text-align: center;
+  /* Center and add an additional line above-below. */
+  margin: 2em auto;
 }
 
 label {
@@ -292,4 +322,25 @@ input[type="url"]:focus {
 iframe {
   display: block;
   margin: auto;
+}
+
+blockquote {
+  padding-left: 8ch;
+  padding-right: 8ch;
+  color: var(--green);
+}
+
+.quote-attribution {
+  color: var(--text-color);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.quote-attribution a {
+  color: var(--text-color);
+}
+
+.quote-attribution a:hover,
+.quote-attribution a:active {
+  color: var(--text-color-strong);
 }
