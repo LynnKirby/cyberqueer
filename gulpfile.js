@@ -6,6 +6,8 @@ const gulp = require("gulp");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 
+let watch = false;
+
 //******************************************************************************
 // Task: clean
 
