@@ -6,7 +6,7 @@ const gulp = require("gulp");
 const rename = require("gulp-rename");
 const browserSync = require("browser-sync").create();
 
-let watch = false;
+let serve = false;
 
 //******************************************************************************
 // Task: clean
@@ -43,7 +43,7 @@ gulp.task("template", () => {
     members: fs.readJSONSync("data/members.json"),
   };
 
-  if (watch) {
+  if (serve) {
     // Use localhost when developing.
     data.meta.url = "http://localhost:3000";
   } else if (process.env.DEPLOY_URL) {
@@ -70,12 +70,12 @@ gulp.task("assets", () => {
 });
 
 //******************************************************************************
-// Task: watch
+// Task: serve
 
-gulp.task("watch", async () => {
+gulp.task("serve", async () => {
   await fs.remove("./dist");
 
-  watch = true;
+  serve = true;
 
   gulp.watch("./site/main.css", { ignoreInitial: false }, gulp.series("css"));
 
