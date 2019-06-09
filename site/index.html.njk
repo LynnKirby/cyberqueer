@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>{{ meta.title }}</title>
+
+  <link rel="stylesheet" href="main.css">
+  <link type="application/atom+xml" rel="alternate" href="feeds.xml" title="{{ meta.title }}">
+</head>
+
+<body>
+<div class="container">
+
+{# This sorta complicated header structure is to have the colon be the same
+color as the subtitle but still wrap with the header and not get separated. #}
+<header>
+  <div class="title-item"><h1>Cyberqueer Webring</h1><span class="header-colon">:</span></div>
+  <div class="title-item">Not queer as in gay but queer as in punk.</div>
+</header>
+
+<section>
+  <header class="members-title section-head">
+    <h2>Members ({{ members | length }})</h2>
+    <a href="feeds.xml">RSS Feeds</a>
+  </header>
+  <ol class="members-list">
+    {%- for member in members -%}
+    <li>
+      <a href="{{ member.url }}">» {{ member.title }}</a>
+    </li>
+    {%- endfor -%}
+  </ol>
+</section>
+
+<section>
+  <h2 class="section-head">What's this?</h2>
+  <p>
+  A community of sites around a common topic, also known as a
+  <a href="https://en.wikipedia.org/wiki/Webring">webring</a>.
+  Each member includes a badge on their site that links to the previous and next
+  sites in the ring. Kids in the 90s used to love it!
+  </p>
+</section>
+
+<section>
+  <h2 class="section-head">How to join</h2>
+  <p>
+    To join the webring, <a href="{{ meta.repo }}/compare">pull request</a>
+    and supply the name and URL of your site. If you publish an RSS feed, you can
+    provide that as well.
+  </p>
+  <p>
+    If you don't have a GitHub account, you can also use this form to sign up. The
+    webring admins will then look at your site and handle your request.
+  </p>
+</section>
+
+<section>
+  <form name="signup" method="POST" data-netlify="true" netlify-honeypot="bot">
+    <label>
+      Site Name:
+      <input type="text" name="name" required />
+    </label>
+
+    <label>
+      Site URL:
+      <input type="url" name="url" required />
+    </label>
+
+    <label>
+      RSS Feed URL (optional):
+      <input type="url" name="feed" />
+    </label>
+
+    <div style="visibility:hidden;display:none" aria-hidden="true">
+      <label>
+        Don’t fill this out if you're human:
+        <input type="text" name="bot" />
+      </label>
+    </div>
+
+    <button type="submit">Please Add Me!</button>
+  </form>
+</section>
+
+<section>
+  <h2 class="section-head">Add the banner</h2>
+  <p>
+    Once you've joined the ring, copy this code snippet into your site:
+  </p>
+  <pre>{% filter escape %}{% include "snippet.njk" %}{% endfilter %}</pre>
+  <p>
+    It will render this banner that links to the other members:
+  </p>
+  {% include "snippet.njk" %}
+  <p>
+    The embed script uses Web Components which are
+    <a href="https://caniuse.com/#feat=shadowdomv1">widely but not completely
+    supported</a>. If you care about those browsers you need to use a
+    <a href="https://www.webcomponents.org/polyfills/shadow-dom/">polyfill</a>
+    on your website.
+  </p>
+</section>
+
+<section>
+  <h2 class="section-head">Want to host your own webring?</h2>
+  <p>
+    If you want to start your own webring, fork
+    <a href="https://github.com/maxboeck/webring">maxboeck/webring</a> on Github
+    and follow the instructions in the README.
+  </p>
+</section>
+
+</div>
+</body>
+
+</html>

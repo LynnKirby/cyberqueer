@@ -1,0 +1,255 @@
+/*
+ * SPDX-License-Identifier: 0BSD
+ * Written 2019 Lynn Kirby
+ *
+ * Notes:
+ *
+ * - The "!" comment below imports is put there so attribution is in the right
+ *   order when this file is inlined and minified.
+ *
+ * - ch = width of "0" character (i.e. width of all characters in monospace)
+ *   em = font size (i.e. height of all characters in monospace)
+ *   Therefore we use ch for horizontal measures and em for vertical ones.
+ */
+
+@import "minireset.css";
+
+/*! cyberqueer.netlify.com/main.css | SPDX-License-Identifier: 0BSD */
+
+/*
+ * Fancy VGA colors!
+ */
+
+:root {
+  --black: rgb(0, 0, 0);
+  --red: rgb(170, 0, 0);
+  --green: rgb(0, 170, 0);
+  --yellow: rgb(170, 85, 0);
+  --blue: rgb(0, 0, 170);
+  --magenta: rgb(170, 0, 170);
+  --cyan: rgb(0, 170, 170);
+  --white: rgb(170, 170, 170);
+
+  --bright-black: rgb(85,85,85);
+  --bright-red: rgb(255,85,85);
+  --bright-green: rgb(85,255,85);
+  --bright-yellow: rgb(	255,255,85);
+  --bright-blue: rgb(85,85,255);
+  --bright-magenta: rgb(255,85,255);
+  --bright-cyan: rgb(85,255,255);
+  --bright-white: rgb(255, 255, 255);
+}
+
+/*
+ * Color variables
+ */
+
+:root {
+  --text-color: var(--white);
+  --text-color-strong: var(--bright-white);
+  --background-color: var(--black);
+
+  --link-color: var(--magenta);
+  --link-color-hover: var(--bright-magenta);
+
+  --header-color: var(--bright-cyan);
+
+  --snippet-color: var(--yellow);
+
+  --input-color: var(--black);
+  --input-background-color: var(--bright-white);
+  --input-color-active: var(--black);
+  --input-border-color-active: var(--link-color-hover);
+}
+
+/*
+ * Text: monospace all the things!
+ */
+
+@font-face {
+  font-family: "IBM VGA8";
+  src: url("/assets/font/Px437_IBM_VGA8.ttf");
+}
+
+* {
+  font-family:
+    "IBM VGA8",
+    "Menlo",
+    "Consolas",
+    "Roboto Mono",
+    "Ubuntu Monospace",
+    "Noto Mono",
+    "Oxygen Mono",
+    "Liberation Mono",
+    monospace;
+}
+
+:root {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * Layout: site has a relatively simple structure, a sequence of <section> with
+ * a header then section contents.
+ */
+
+:root {
+  color: var(--text-color);
+  background: var(--background-color);
+  padding: 1em 1ch;
+}
+
+.container {
+  max-width: 90ch;
+  margin: 0 auto;
+}
+
+/*
+ * Block elements: 1-2 lines between. Removed for last sub-elements so we
+ * don't get doubled up lines when parent and child have margins.
+ */
+
+header,
+pre,
+p,
+ol,
+pre,
+.section-head,
+label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+section {
+  margin-bottom: 2em;
+}
+
+* > :last-child {
+  margin-bottom: 0;
+}
+
+/*
+ * Headers: bright color and underlines for h1. Note we only use two levels of
+ * header. Really just the page title and section names. Also display main title
+ * and subtitle on one line.
+ */
+
+h1, h2 {
+  color: var(--header-color);
+}
+
+h1 {
+  text-decoration: underline;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  white-space: nowrap;
+}
+
+h1, .title-item {
+  display: inline-block;
+}
+
+.header-colon {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.section-head {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--header-color);
+  padding-bottom: 0.5em;
+}
+
+/*
+ * Member list
+ */
+
+.members-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.members-list {
+  list-style: none;
+}
+
+/*
+ * Links
+ */
+
+a[href] {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a[href]:hover,
+a[href]:focus {
+  color: var(--link-color-hover);
+  text-decoration: underline;
+}
+
+/*
+ * Code block: add some padding and ensure overflow gets scrollbar-ed.
+ */
+
+pre {
+  padding: 1ch 1em;
+  overflow: auto;
+  color: var(--snippet-color);
+}
+
+/*
+ * Form
+ */
+
+form {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+}
+
+label {
+  color: var(--text-color-strong);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+input[type="text"],
+input[type="url"],
+button {
+  font-size: 1rem;
+  border: none;
+  color: var(--input-color);
+  background: var(--input-background-color);
+  border: 1px solid var(--background-color);
+
+  /* Disable default styles */
+  outline: none;
+  box-shadow: none;
+}
+
+
+input[type="text"],
+input[type="url"] {
+  width: 30ch;
+  margin-left: 1ch;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="url"]:hover,
+input[type="url"]:focus {
+  color: var(--input-color-active);
+  border: 1px solid var(--input-border-color-active);
+}
+
