@@ -31,15 +31,11 @@ gulp.task("css", () => {
     .pipe(browserSync.stream());
 });
 
-const nunjucks = require("gulp-nunjucks");
-const njk = require("nunjucks");
-
-const environment = new njk.Environment(
-  new njk.FileSystemLoader("site/includes"),
-);
 
 //******************************************************************************
 // Task: template
+
+const nunjucks = require("gulp-nunjucks");
 
 gulp.task("template", () => {
   const data = {
@@ -57,7 +53,7 @@ gulp.task("template", () => {
 
   return gulp
     .src("./site/*.njk")
-    .pipe(nunjucks.compile(data, { env: environment }))
+    .pipe(nunjucks.compile(data))
     .pipe(rename({ extname: "" }))
     .pipe(gulp.dest("./dist/site"))
     .pipe(browserSync.stream());
@@ -76,13 +72,15 @@ gulp.task("assets", () => {
 //******************************************************************************
 // Task: watch
 
-gulp.task("watch", () => {
+gulp.task("watch", async () => {
+  await fs.remove("./dist");
+
   watch = true;
 
   gulp.watch("./site/main.css", { ignoreInitial: false }, gulp.series("css"));
 
   gulp.watch(
-    ["./site/*.njk", "./site/includes/**/*"],
+    "./site/*.njk",
     { ignoreInitial: false },
     gulp.series("template"),
   );
@@ -96,6 +94,9 @@ gulp.task("watch", () => {
   browserSync.init({
     server: {
       baseDir: ["./dist/site"],
+      serveStaticOptions: {
+        extensions: ["html"]
+      },
     },
   });
 });

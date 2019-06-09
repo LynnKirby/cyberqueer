@@ -91,17 +91,49 @@
 }
 
 /*
+ * Embed styles
+ */
+
+.embed {
+  border: 4px double white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.embed .container {
+  padding: 1em 2ch;
+}
+
+.ring-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/*
  * Layout: site has a relatively simple structure, a sequence of <section> with
  * a header then section contents.
  */
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 :root {
   color: var(--text-color);
   background: var(--background-color);
+}
+
+.site {
   padding: 1em 1ch;
 }
 
-.container {
+.site .container {
   max-width: 90ch;
   margin: 0 auto;
 }
@@ -202,9 +234,9 @@ a[href]:focus {
  */
 
 pre {
-  padding: 1ch 1em;
   overflow: auto;
   color: var(--snippet-color);
+  text-align: center;
 }
 
 /*
@@ -253,3 +285,11 @@ input[type="url"]:focus {
   border: 1px solid var(--input-border-color-active);
 }
 
+/*
+ * The embedded iframe
+ */
+
+iframe {
+  display: block;
+  margin: auto;
+}

@@ -12,7 +12,7 @@
   <link type="application/atom+xml" rel="alternate" href="feeds.xml" title="{{ meta.title }}">
 </head>
 
-<body>
+<body class="site">
 <div class="container">
 
 {# This sorta complicated header structure is to have the colon be the same
@@ -92,18 +92,11 @@ color as the subtitle but still wrap with the header and not get separated. #}
   <p>
     Once you've joined the ring, copy this code snippet into your site:
   </p>
-  <pre>{% filter escape %}{% include "snippet.njk" %}{% endfilter %}</pre>
+  <pre>{% filter escape %}<iframe src="{{ meta.url }}/embed"></iframe>{% endfilter %}</pre>
   <p>
     It will render this banner that links to the other members:
   </p>
-  {% include "snippet.njk" %}
-  <p>
-    The embed script uses Web Components which are
-    <a href="https://caniuse.com/#feat=shadowdomv1">widely but not completely
-    supported</a>. If you care about those browsers you need to use a
-    <a href="https://www.webcomponents.org/polyfills/shadow-dom/">polyfill</a>
-    on your website.
-  </p>
+  <iframe src="/embed"></iframe>
 </section>
 
 <section>
