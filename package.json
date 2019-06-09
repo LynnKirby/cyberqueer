@@ -8,6 +8,7 @@
     "format": "prettier --write \"*.js\" \"lambda/**/*.js\""
   },
   "dependencies": {
+    "acorn": "^6.1.1",
     "browser-sync": "^2.26.7",
     "cssnano": "^4.1.10",
     "fs-extra": "^8.0.1",

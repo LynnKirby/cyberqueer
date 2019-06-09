@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-import members from "../../src/data/members";
+import members from "../../data/members";
 
 export const redirect = site => {
   const statusMessage = `redirecting to: ${site.url}`;

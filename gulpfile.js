@@ -12,7 +12,7 @@ let watch = false;
 // Task: clean
 
 gulp.task("clean", async () => {
-  await fs.ensureDir("./dist");
+  await fs.remove("./dist");
 });
 
 //******************************************************************************
@@ -68,8 +68,8 @@ gulp.task("template", () => {
 
 gulp.task("assets", () => {
   return gulp
-    .src("./site/assets/**/*")
-    .pipe(gulp.dest("./dist/site/assets"))
+    .src("./site/font/*.ttf")
+    .pipe(gulp.dest("./dist/site"))
     .pipe(browserSync.stream());
 });
 
@@ -88,7 +88,7 @@ gulp.task("watch", () => {
   );
 
   gulp.watch(
-    "./site/assets/**/*",
+    "./site/font/**/*",
     { ignoreInitial: false },
     gulp.series("assets"),
   );
@@ -105,5 +105,5 @@ gulp.task("watch", () => {
 
 gulp.task(
   "default",
-  gulp.series(["clean", gulp.parallel(["css", "template"])]),
+  gulp.series(["clean", gulp.parallel(["css", "template", "assets"])]),
 );

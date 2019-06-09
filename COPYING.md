@@ -1,8 +1,8 @@
 The primary license of files in this project is 0BSD, reproduced below. Other
 licenses apply to certain files. These include:
 
-- `./functions` ([`MIT`](./functions/LICENSE))
-- `./site/assets/font` ([`CC-BY-SA-4.0`](./site/assets/font/LICENSE.TXT))
+- `./lambda` ([`MIT`](./lambda/LICENSE))
+- `./site/font` ([`CC-BY-SA-4.0`](./site/font/LICENSE.TXT))
 
 See the `SPDX-License-Identifier` tags in source files and license texts in
 subdirectories. 
