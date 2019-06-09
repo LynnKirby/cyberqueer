@@ -4,12 +4,6 @@
   functions = "dist/functions"
 
 [[redirects]]
-  from = "/embed"
-  to = "/embed.html"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/next"
   to = "/.netlify/functions/next"
   status = 301

@@ -97,9 +97,6 @@ gulp.task("serve", async () => {
   browserSync.init({
     server: {
       baseDir: ["./dist/site"],
-      serveStaticOptions: {
-        extensions: ["html"],
-      },
     },
   });
 });
