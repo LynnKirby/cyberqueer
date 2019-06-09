@@ -41,8 +41,10 @@
 }
 
 /*
- * Color variables
+ * Various variables
  */
+
+ @custom-media --small-viewport (max-width: 72ch);
 
 :root {
   --text-color: var(--white);
@@ -60,6 +62,8 @@
   --input-background-color: var(--bright-white);
   --input-color-active: var(--black);
   --input-border-color-active: var(--link-color-hover);
+
+  --page-width: 84ch;
 }
 
 /*
@@ -135,8 +139,16 @@ html {
 }
 
 .site .container {
-  max-width: 84ch;
+  max-width: var(--page-width);
   margin: 0 auto;
+}
+
+.center-block {
+  padding-left: 2ch;
+  padding-right: 2ch;
+  max-width: calc(var(--page-width) - 12ch);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*
@@ -264,7 +276,8 @@ a[href]:focus {
  */
 
 pre {
-  overflow: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
   color: var(--snippet-color);
   text-align: center;
 }
@@ -283,6 +296,16 @@ form {
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+
+@media (--small-viewport) {
+  .form-wrap {
+
+  }
+
+  label {
+    flex-direction: column;
+  }
 }
 
 label {
@@ -336,8 +359,7 @@ iframe {
 }
 
 blockquote {
-  padding-left: 8ch;
-  padding-right: 8ch;
+
   color: var(--green);
 }
 

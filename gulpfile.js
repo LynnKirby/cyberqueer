@@ -20,17 +20,24 @@ gulp.task("clean", async () => {
 
 const postcss = require("gulp-postcss");
 const postcssImport = require("postcss-import");
+const postcssCustomMedia = require("postcss-custom-media");
 const postcssPresetEnv = require("postcss-preset-env");
 const cssnano = require("cssnano");
 
 gulp.task("css", () => {
   return gulp
     .src("./site/main.css")
-    .pipe(postcss([postcssImport(), postcssPresetEnv(), cssnano()]))
+    .pipe(
+      postcss([
+        postcssImport(),
+        postcssCustomMedia(),
+        postcssPresetEnv(),
+        cssnano(),
+      ]),
+    )
     .pipe(gulp.dest("./dist/site"))
     .pipe(browserSync.stream());
 });
-
 
 //******************************************************************************
 // Task: template
@@ -79,11 +86,7 @@ gulp.task("serve", async () => {
 
   gulp.watch("./site/main.css", { ignoreInitial: false }, gulp.series("css"));
 
-  gulp.watch(
-    "./site/*.njk",
-    { ignoreInitial: false },
-    gulp.series("template"),
-  );
+  gulp.watch("./site/*.njk", { ignoreInitial: false }, gulp.series("template"));
 
   gulp.watch(
     "./site/font/**/*",
@@ -95,7 +98,7 @@ gulp.task("serve", async () => {
     server: {
       baseDir: ["./dist/site"],
       serveStaticOptions: {
-        extensions: ["html"]
+        extensions: ["html"],
       },
     },
   });
