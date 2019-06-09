@@ -1,0 +1,13 @@
+/*
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+/index.html
+  X-Frame-Options: DENY
+/embed.html
+  Content-Security-Policy: frame-ancestors 'self'
+{#- CSP directives allowing the embed frame to be loaded by known sources. -#}
+{#- The space in the 'if' block is needed. -#}
+{%- for member in members -%}
+{%- if member.frameAncestor %} {{ member.frameAncestor }}{%- endif -%}
+{%- endfor -%}
